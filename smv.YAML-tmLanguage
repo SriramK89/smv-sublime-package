@@ -1,0 +1,53 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: SMV
+scopeName: source.smv
+fileTypes: [smv]
+uuid: 29010fa9-35fc-4496-82d7-87d4e29d16d3
+
+patterns:
+- comment: Strings
+  name: string.quoted.smv
+  match: (")([A-Za-z0-9\~\!\@\#\$\%\^\&\*\(\)\_\+\`\-\=]+)(")
+
+- comment: Range
+  name: string.other.instance.constructor
+  match: (\d+)(\.\.)(\d+)
+
+- comment: Numbers
+  name: constant.language.smv
+  match: (\d+\.?\d+)
+
+- comment: Comments
+  name: comment.line.smv
+  match: ^\s*(--)\s*.*
+
+# - comment: Punctuations
+#   name: punctuation.separator.smv
+#   match: .*(;|:|=|:=|\.\.).*
+#   captures:
+#     '1': {name: punctuation.separator.smv}
+
+- comment: Keywords
+  name: keyword.control.smv
+  match: \s*(VAR|ASSIGN|TRANS)\s*
+
+- comment: Module keyword
+  name: keyword.definition.module.smv
+  match: \s*(MODULE|module)\s*([A-Za-z0-9\_]+)\s*\(?\s*([A-Za-z0-9][A-Za-z0-9\_,\s]*[A-Za-z0-9\_])?\s*\)?\s*
+  captures:
+    '1': {name: entity.name.section.smv}
+    '2': {name: variable.function.smv}
+    '3': {name: variable.parameter.function.smv}
+
+# - comment: Variables
+#   name: keyword.variables.smv
+#   match: .*([A-Za-z][A-Za-z0-9_]+).*
+#   captures:
+#     '1': {name: constant.numeric.smv}
+
+- comment: Variables
+  name: variable.language.smv
+  match: ([a-zA-Z][A-Za-z0-9\_]*)
+  captures:
+    '1': {name: keyword.variable.smv}
